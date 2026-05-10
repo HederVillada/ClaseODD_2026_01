@@ -1,5 +1,9 @@
 package Juego.Weapons;
 
+import Juego.WeaponClass;
+import Juego.Abilities.DoubleTap;
+import Juego.Abilities.ZoomIn;
+
 public class Bodyguard49 extends Weapon {
     public Bodyguard49() {
         super("S&W 49 Bodyguard", WeaponClass.SIDEARM, 5);

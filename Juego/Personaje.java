@@ -5,8 +5,6 @@ import Juego.Weapons.*;
 import java.util.Random;
 
 public class Personaje {
-    public boolean hasSabotLoaded = false;
-    public boolean hasBayonetFixed = false;
     public String nombre;
     public int salud = 100; 
     public int accuracy = 100; 
@@ -17,6 +15,10 @@ public class Personaje {
     
     public int turnsToWait = 0; 
     public String currentAction = ""; 
+
+    // Flags for special abilities
+    public boolean hasSabotLoaded = false;
+    public boolean hasBayonetFixed = false;
 
     public Personaje(String nombre, Weapon primary, Weapon secondary) {
         this.nombre = nombre;
@@ -34,16 +36,32 @@ public class Personaje {
     }
 
     public void shoot(Personaje target) {
+        if (hasBayonetFixed) {
+            System.out.println(">>> " + nombre + " LUNGES WITH THE BAYONET!");
+            target.takeDamage(30);
+            hasBayonetFixed = false;
+            return; 
+        }
+
         Random rand = new Random();
-        double effectiveAcc = this.accuracy * activeWeapon.type.accMultiplier;
+        double classMult = activeWeapon.getType().accMultiplier;
+        
+        if (hasSabotLoaded) {
+            classMult = 1.0; 
+            System.out.println(">> [SLUG EFFECT] Shotgun spread negated!");
+            hasSabotLoaded = false;
+        }
+
+        double effectiveAcc = this.accuracy * classMult;
         
         if (rand.nextInt(100) < effectiveAcc) {
-            int dmg = rand.nextInt((activeWeapon.type.maxDmg - activeWeapon.type.minDmg) + 1) 
-                       + activeWeapon.type.minDmg;
+            int min = activeWeapon.getType().minDmg;
+            int max = activeWeapon.getType().maxDmg;
+            int dmg = rand.nextInt((max - min) + 1) + min;
             target.takeDamage(dmg);
-            System.out.println(">>> HIT! " + activeWeapon.name + " dealt " + dmg + " damage.");
+            System.out.println(">>> HIT! " + activeWeapon.getName() + " dealt " + dmg + " damage.");
         } else {
-            System.out.println(">>> MISS! Shot deviated from target.");
+            System.out.println(">>> MISS!");
         }
         activeWeapon.currentAmmo--;
     }
@@ -60,10 +78,10 @@ public class Personaje {
 
         if (hasNYR) {
             turnsToWait = 1;
-            currentAction = "QUICK RELOAD (Passive)";
+            currentAction = "QUICK RELOAD";
         } else {
-            turnsToWait = activeWeapon.type.reloadTurns;
-            currentAction = "Reloading " + activeWeapon.name;
+            turnsToWait = activeWeapon.getType().reloadTurns;
+            currentAction = "Reloading";
         }
         activeWeapon.reload();
     }

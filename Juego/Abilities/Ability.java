@@ -1,8 +1,10 @@
 package Juego.Abilities;
 
+import Juego.Personaje;
+
 public interface Ability {
     String getName();
     boolean isPassive();
-    double getAccuracyMult(); // New: 0.33 for Low, 0.5 for Medium, 1.0 for High
-    void execute(Personaje user, Personaje target);
+    double getAccuracyMult();
+    void execute(Personaje user, Personaje target); // Make sure this matches!
 }

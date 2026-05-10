@@ -1,4 +1,9 @@
 package Juego.Weapons;
+
+import Juego.WeaponClass;
+import Juego.Abilities.DoubleTap;
+import Juego.Abilities.SmokeBomb;
+
 public class AKM extends Weapon {
     public AKM() {
         // mas capacidad que FAL50 porque acepta AK mags

@@ -1,6 +1,8 @@
 package Juego.Weapons;
 
 import Juego.WeaponClass;
+import Juego.Abilities.SuppressiveFire;
+import Juego.Abilities.ZoomIn;
 
 public class M60 extends Weapon {
     public M60() {
