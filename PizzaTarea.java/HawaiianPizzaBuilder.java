@@ -1,11 +1,13 @@
-public abstract class PizzaBuilder {
-    protected Pizza pizza;
+public class HawaiianPizzaBuilder extends PizzaBuilder {
+    public void buildDough() {
+        pizza.setDough("cross");
+    }
 
-    public Pizza getPizza() { return pizza; }
+    public void buildSauce() {
+        pizza.setSauce("mild");
+    }
 
-    public void createNewPizzaProduct() { pizza = new Pizza(); }
-
-    public abstract void buildDough();
-    public abstract void buildSauce();
-    public abstract void buildTopping();
+    public void buildTopping() {
+        pizza.setTopping("ham+pineapple");
+    }
 }
