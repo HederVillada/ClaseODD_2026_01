@@ -1,29 +1,38 @@
 package Juego.Abilities;
+
 import Juego.Personaje;
 import java.util.Random;
 
 public class DoubleTap implements Ability {
+    @Override
     public String getName() { return "Double Tap"; }
+    @Override
     public boolean isPassive() { return false; }
-    public double getAccuracyMult() { return 0.5; } // Medium Accuracy
+    @Override
+    public double getAccuracyMult() { return 0.70; } // Better accuracy than a Mag Dump
 
+    @Override
     public void execute(Personaje user, Personaje target) {
         if (user.activeWeapon.currentAmmo < 2) {
-            System.out.println("! Need 2 bullets for a Double Tap.");
+            System.out.println("! Not enough ammo for a Double Tap.");
             return;
         }
-        System.out.println(">> " + user.getNombre() + " fires twice!");
-        Random rand = new Random();
-        double finalAcc = user.accuracy * user.activeWeapon.type.accMultiplier * 0.5;
 
-        for (int i = 0; i < 2; i++) {
+        System.out.println(">> " + user.getNombre() + " places two quick shots!");
+        Random rand = new Random();
+        double finalAcc = user.accuracy * user.activeWeapon.getType().accMultiplier * 0.70;
+
+        for (int i = 1; i <= 2; i++) {
             user.activeWeapon.currentAmmo--;
             if (rand.nextInt(100) < finalAcc) {
-                int dmg = rand.nextInt((user.activeWeapon.type.maxDmg - user.activeWeapon.type.minDmg) + 1) + user.activeWeapon.type.minDmg;
+                int min = user.activeWeapon.getType().minDmg;
+                int max = user.activeWeapon.getType().maxDmg;
+                int dmg = rand.nextInt((max - min) + 1) + min;
+                
                 target.takeDamage(dmg);
-                System.out.println("   Hit!");
+                System.out.println("   [!] Round #" + i + " CONNECTED! Dealt " + dmg + " damage.");
             } else {
-                System.out.println("   Miss.");
+                System.out.println("   [ ] Round #" + i + " missed.");
             }
         }
     }

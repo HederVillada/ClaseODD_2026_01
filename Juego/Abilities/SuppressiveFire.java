@@ -13,25 +13,28 @@ public class SuppressiveFire implements Ability {
 
     @Override
     public void execute(Personaje user, Personaje target) {
-        if (user.activeWeapon.currentAmmo < 5) {
-            System.out.println("! Not enough ammo.");
-            return;
-        }
-        
-        // FIX: Use getNombre() instead of .nombre
-        System.out.println(">> " + user.getNombre() + " LAYING DOWN SUPPRESSIVE FIRE!");
-        Random rand = new Random();
-        double finalAcc = user.accuracy * user.activeWeapon.type.accMultiplier * 0.25;
+        int shots = Math.min(user.activeWeapon.currentAmmo, 5);
+        if (shots < 1) return;
 
-        for (int i = 0; i < 5; i++) {
+        System.out.println(">> " + user.getNombre() + " lays down heavy cover fire!");
+        Random rand = new Random();
+        double finalAcc = user.accuracy * user.activeWeapon.getType().accMultiplier * 0.25;
+
+        for (int i = 1; i <= shots; i++) {
             user.activeWeapon.currentAmmo--;
             if (rand.nextInt(100) < finalAcc) {
-                target.takeDamage(user.activeWeapon.type.minDmg);
-                System.out.println("   [!] Stray round hit " + target.getNombre() + "!");
+                int dmg = user.activeWeapon.getType().minDmg;
+                target.takeDamage(dmg);
+                System.out.println("   [!] Round #" + i + " CONNECTED! Stray hit for " + dmg + " damage.");
+            } else {
+                System.out.println("   [ ] Round #" + i + " missed.");
             }
         }
-
+        
+        //debuff se da no importa si acierta o no, el objetivo queda con accuracy reducida
+        //porque pues, suppressive fire literalmente significa "fuego de supresión" 
+        //el objetivo queda tan acobardado que su precisión se reduce
         target.accuracy -= 10;
-        System.out.println("   [STATUS] " + target.getNombre() + " is pinned! Accuracy dropped.");
+        System.out.println("   [STATUS] " + target.getNombre() + " is PINNED! (-10% Accuracy)");
     }
 }
