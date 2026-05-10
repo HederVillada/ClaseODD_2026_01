@@ -12,7 +12,7 @@ public class DoubleTap implements Ability {
             System.out.println("! Need 2 bullets for a Double Tap.");
             return;
         }
-        System.out.println(">> " + user.nombre + " fires twice!");
+        System.out.println(">> " + user.getNombre() + " fires twice!");
         Random rand = new Random();
         double finalAcc = user.accuracy * user.activeWeapon.type.accMultiplier * 0.5;
 

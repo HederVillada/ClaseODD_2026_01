@@ -6,39 +6,25 @@ import java.util.Random;
 public class MagDump implements Ability {
     @Override
     public String getName() { return "Mag Dump"; }
-
     @Override
     public boolean isPassive() { return false; }
-
     @Override
     public double getAccuracyMult() { return 0.33; }
 
     @Override
     public void execute(Personaje user, Personaje target) {
-        int shotsToFire = user.activeWeapon.currentAmmo;
-        
-        if (shotsToFire <= 0) {
-            System.out.println("! Click... the magazine is empty.");
-            return;
-        }
+        int shots = user.activeWeapon.currentAmmo;
+        if (shots <= 0) return;
 
-        System.out.println(">> " + user.nombre + " dumps the mag!");
+        // FIX: Use getNombre()
+        System.out.println(">> " + user.getNombre() + " empties the magazine!");
         Random rand = new Random();
-        
-        // This line was red because accMultiplier wasn't public in the Enum
-        double finalAcc = user.accuracy * user.activeWeapon.type.accMultiplier * this.getAccuracyMult();
+        double finalAcc = user.accuracy * user.activeWeapon.type.accMultiplier * 0.33;
 
-        for (int i = 0; i < shotsToFire; i++) {
-            user.activeWeapon.currentAmmo--; 
+        for (int i = 0; i < shots; i++) {
+            user.activeWeapon.currentAmmo--;
             if (rand.nextInt(100) < finalAcc) {
-                // These lines were red because minDmg/maxDmg weren't public
-                int min = user.activeWeapon.type.minDmg;
-                int max = user.activeWeapon.type.maxDmg;
-                int dmg = rand.nextInt((max - min) + 1) + min;
-                target.takeDamage(dmg);
-                System.out.println("   [HIT] Bang! " + dmg + " damage.");
-            } else {
-                System.out.println("   [MISS] *whiz*");
+                target.takeDamage(user.activeWeapon.type.minDmg);
             }
         }
     }

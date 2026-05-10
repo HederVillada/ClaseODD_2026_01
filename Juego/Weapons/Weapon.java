@@ -4,7 +4,7 @@ import Juego.WeaponClass;
 import Juego.Abilities.Ability;
 
 public abstract class Weapon {
-    // CHANGED TO PUBLIC
+    //esto antes era privado, y me dio problemas, así que fue cambiado a publico
     public String name;
     public WeaponClass type;
     public int currentAmmo;
@@ -29,3 +29,5 @@ public abstract class Weapon {
     
     public void reload() { this.currentAmmo = this.maxAmmo; }
 }
+
+//este sistema es modular. Para ingresar un arma, simplemente copia y pega cualquiera de las armas y cambia sus opciones en el Main

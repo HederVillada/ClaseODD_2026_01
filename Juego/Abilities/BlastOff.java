@@ -7,7 +7,7 @@ public class BlastOff implements Ability {
     public double getAccuracyMult() { return 1.0; }
 
     public void execute(Personaje user, Personaje target) {
-        System.out.println(">> " + user.nombre + " fires a point-blank blast!");
+        System.out.println(">> " + user.getNombre() + " fires a point-blank blast!");
         target.takeDamage(20);
         target.accuracy -= 5;
     }

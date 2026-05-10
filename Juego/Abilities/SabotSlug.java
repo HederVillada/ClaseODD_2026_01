@@ -11,7 +11,7 @@ public class SabotSlug implements Ability {
             System.out.println("! Shotgun is already full.");
             return;
         }
-        System.out.println(">> " + user.nombre + " is hand-loading a Sabot Slug...");
+        System.out.println(">> " + user.getNombre() + " is hand-loading a Sabot Slug...");
         user.turnsToWait = 1;
         user.currentAction = "Loading Slug";
         user.activeWeapon.currentAmmo++;

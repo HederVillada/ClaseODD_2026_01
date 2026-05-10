@@ -7,7 +7,7 @@ public class SmokeBomb implements Ability {
     public double getAccuracyMult() { return 1.0; }
 
     public void execute(Personaje user, Personaje target) {
-        System.out.println(">> " + user.nombre + " deploys smoke! Everything is obscured.");
+        System.out.println(">> " + user.getNombre() + " deploys smoke! Everything is obscured.");
         user.accuracy -= 15;
         target.accuracy -= 30;
     }

@@ -12,7 +12,7 @@ public class ShotgunSpin implements Ability {
             System.out.println("! Not enough shells for a spin.");
             return;
         }
-        System.out.println(">> " + user.nombre + " spins the shotgun, firing rapidly!");
+        System.out.println(">> " + user.getNombre() + " spins the shotgun, firing rapidly!");
         Random rand = new Random();
         double finalAcc = user.accuracy * user.activeWeapon.type.accMultiplier * 0.33;
 

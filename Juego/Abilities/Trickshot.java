@@ -20,7 +20,7 @@ public class Trickshot implements Ability {
             return;
         }
 
-        System.out.println(">> " + user.nombre + " attempts a flashy Trickshot!");
+        System.out.println(">> " + user.getNombre() + " attempts a flashy Trickshot!");
         Random rand = new Random();
         // Uses the new public visibility we set up
         double finalAcc = user.accuracy * user.activeWeapon.type.accMultiplier * 0.33;

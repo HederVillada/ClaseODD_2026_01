@@ -12,7 +12,7 @@ public class SlapLoad implements Ability {
             System.out.println("! No ammo to load.");
             return;
         }
-        System.out.println(">> " + user.nombre + " slams a hot round into the chamber!");
+        System.out.println(">> " + user.getNombre() + " slams a hot round into the chamber!");
         Random rand = new Random();
         double finalAcc = user.accuracy * user.activeWeapon.type.accMultiplier;
 

@@ -8,7 +8,7 @@ public class MolotovThrow implements Ability {
     public double getAccuracyMult() { return 0.5; }
 
     public void execute(Personaje user, Personaje target) {
-        System.out.println(">> " + user.nombre + " lights and tosses a Molotov!");
+        System.out.println(">> " + user.getNombre() + " lights and tosses a Molotov!");
         Random rand = new Random();
         double finalAcc = user.accuracy * user.activeWeapon.type.accMultiplier * 0.5;
 
