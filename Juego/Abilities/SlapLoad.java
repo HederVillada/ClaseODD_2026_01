@@ -20,9 +20,9 @@ public class SlapLoad implements Ability {
         if (rand.nextInt(100) < finalAcc) {
             int dmg = (rand.nextInt((user.activeWeapon.type.maxDmg - user.activeWeapon.type.minDmg) + 1) + user.activeWeapon.type.minDmg) * 2;
             target.takeDamage(dmg);
-            System.out.println("   [CRITICAL HIT] SLAP round dealt " + dmg + " damage!");
+            System.out.println("   [!] SLAP round dealt " + dmg + " damage!");
         } else {
-            System.out.println("   [WHIFF] The round missed and the weapon jammed!");
+            System.out.println("   [ ] The round missed and the weapon jammed!");
             user.turnsToWait = 1;
             user.currentAction = "Clearing Jam";
         }
