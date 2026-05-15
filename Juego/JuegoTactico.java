@@ -125,31 +125,37 @@ public class JuegoTactico {
                 }
             } else if (cat.equals("2")) {
                 while (true) {
-                    System.out.println("\n[AR] 1. AKM | 2. AK-74M | 3. FAL 7.62 (Soviet) | 0. BACK");
+                    System.out.println("\n[AR] 1. AKM | 2. AK-74M | 3. FAL 7.62 (Soviet) | 4. M4A1 Carbine | 5. M231 Port Gun | 0. BACK");
                     String c = sc.nextLine();
                     if (c.equals("1")) return new AKM();
                     if (c.equals("2")) return new AK74M();
                     if (c.equals("3")) return new FAL762();
+                    if (c.equals("4")) return new M4A1();
+                    if (c.equals("5")) return new M231();
                     if (c.equals("0")) break;
                     System.out.println(">> [!] ERROR: INVALID SELECTION. TRY AGAIN.");
                 }
             } else if (cat.equals("3")) {
                 while (true) {
-                    System.out.println("\n[SG] 1. Auto-5 | 2. OverUnder | 0. BACK");
+                    System.out.println("\n[SG] 1. Auto-5 | 2. OverUnder | 3. Trench Gun | 4. Double Barrel | 0. BACK");
                     String c = sc.nextLine();
                     if (c.equals("1")) return new Auto5();
                     if (c.equals("2")) return new OverUnder();
+                    if (c.equals("3")) return new TrenchGun();
+                    if (c.equals("4")) return new DoubleBarrel();
                     if (c.equals("0")) break;
                     System.out.println(">> [!] ERROR: INVALID SELECTION. TRY AGAIN.");
                 }
             } else if (cat.equals("4")) {
                 while (true) {
-                    System.out.println("\n[SIDE] 1. MAC-10 | 2. M60 | 3. Bodyguard 49 | 4. Makarov | 0. BACK");
+                    System.out.println("\n[SIDE] 1. MAC-10 | 2. M60 | 3. Bodyguard 49 | 4. Makarov | 5. Beretta 92 | 6. Astra Revolver| 0. BACK");
                     String c = sc.nextLine();
                     if (c.equals("1")) return new MAC10();
                     if (c.equals("2")) return new M60();
                     if (c.equals("3")) return new Bodyguard49();
                     if (c.equals("4")) return new Makarov();
+                    if (c.equals("5")) return new Beretta();
+                    if (c.equals("6")) return new Astra();
                     if (c.equals("0")) break;
                     System.out.println(">> [!] ERROR: INVALID SELECTION. TRY AGAIN.");
                 }
@@ -161,7 +167,7 @@ public class JuegoTactico {
 
     private static Weapon getRandomWeapon() {
         Random r = new Random();
-        Weapon[] pool = {new AKM(), new G3(), new M60(), new Auto5(), new MAC10(), new Makarov()};
+        Weapon[] pool = {new AKM(), new G3(), new M60(), new Auto5(), new MAC10(), new Makarov(), new Beretta(), new Astra(), new FAL762(), new FAL50(), new Bodyguard49(), new OverUnder(), new TrenchGun(), new BrowningBLR()};
         return pool[r.nextInt(pool.length)];
     }
 

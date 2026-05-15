@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "JuegoTactico",
+            "request": "launch",
+            "mainClass": "Juego.JuegoTactico",
+            "projectName": "ClaseODD_2026_01_c6ff0d86"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"

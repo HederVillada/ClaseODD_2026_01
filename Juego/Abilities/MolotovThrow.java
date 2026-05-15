@@ -15,9 +15,9 @@ public class MolotovThrow implements Ability {
         if (rand.nextInt(100) < finalAcc) {
             int fireDamage = 15 + rand.nextInt(10);
             target.takeDamage(fireDamage);
-            System.out.println("   [HIT] Target is engulfed in flames! " + fireDamage + " damage.");
+            System.out.println("   [!] Target is engulfed in flames! " + fireDamage + " damage.");
         } else {
-            System.out.println("   [MISS] The bottle shatters uselessly.");
+            System.out.println("   [ ] The bottle shatters uselessly.");
         }
     }
 }
